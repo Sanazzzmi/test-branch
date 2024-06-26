@@ -1,15 +1,21 @@
-name: Push on commit
+name: Send API Request On Commit
 
-on: [push]
-
+on:
+  push:
+    branches:
+      - main  
 jobs:
-  build:
-
+  send-api-request:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Send Push Notification
-      uses: techulus/push-github-action@1.0.0
-      env:
-        API_KEY: ${{ secrets.API_KEY }}
-        MESSAGE: "There is a new commit!"
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Send API Request
+        run: |
+          curl -X POST \
+          -H 'Content-Type: application/json' \
+          -d '{"jsonrpc": "2.0", "method": "call","params": {"service": "object", "method": "execute", "args": ["odoo17-main-6", 2, "admin", "product.template", "create", {"name" : "demo","default_code" : "AZUL01010"}]}}' \
+          http://localhost:8069/jsonrpc
+
