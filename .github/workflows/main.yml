@@ -14,4 +14,4 @@ jobs:
 
       - name: Send API Request
         run: |
-          curl -X POST   -H 'Content-Type: application/json'   -d '{"jsonrpc": "2.0", "method": "call","params": {"service": "object", "method": "execute", "args": ["odoo17-main-6", 2, "admin", "product.template", "create", {"name" : "demo","default_code" : "AZUL01010"}]}}'   http://localhost:8069/jsonrpc --max-time 10
+          curl -X POST   -H 'Content-Type: application/json'   -d '{"jsonrpc": "2.0", "method": "call","params": {"service": "object", "method": "execute", "args": ["demo16", 2, "7F1gp[2M0%7M", "product.template", "create", {"name" : "demo","default_code" : "AZUL01010"}]}}'   http://demo16.viraweb123.ir/jsonrpc --max-time 10
